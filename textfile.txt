@@ -1,4 +1,0 @@
-There is an ask to create the python script to fetch the stopped instances, unattached EBS volumes and snapshorst to be cleared/deleted from aws.
-
-1. I need simple python script to indentify and removed. No complex code only simple.
-2. Simple tf resource files to create 3 volumes, 3 instances, 3 snapshost to the volumes for above ask.
