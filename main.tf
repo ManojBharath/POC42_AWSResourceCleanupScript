@@ -1,17 +1,3 @@
-# Create 3 EBS Volumes
-resource "aws_ebs_volume" "volumes" {
-  count             = 3
-  availability_zone = var.availability_zone
-  size              = var.volume_size
-  encrypted         = false
-
-  tags = {
-    Name        = "cleanup-test-volume-${count.index + 1}"
-    Environment = var.environment
-    Purpose     = "cleanup-testing"
-  }
-}
-
 # Create 3 EC2 Instances
 resource "aws_instance" "instances" {
   count             = 3
@@ -21,6 +7,20 @@ resource "aws_instance" "instances" {
 
   tags = {
     Name        = "cleanup-test-instance-${count.index + 1}"
+    Environment = var.environment
+    Purpose     = "cleanup-testing"
+  }
+}
+
+# Create 3 EBS Volumes
+resource "aws_ebs_volume" "volumes" {
+  count             = 3
+  availability_zone = var.availability_zone
+  size              = var.volume_size
+  encrypted         = false
+
+  tags = {
+    Name        = "cleanup-test-volume-${count.index + 1}"
     Environment = var.environment
     Purpose     = "cleanup-testing"
   }
@@ -38,4 +38,3 @@ resource "aws_ebs_snapshot" "snapshots" {
     Purpose     = "cleanup-testing"
   }
 }
-
