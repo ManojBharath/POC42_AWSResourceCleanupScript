@@ -3,8 +3,8 @@
 Simple AWS Resource Cleanup Script
 Identifies and removes:
 - Stopped EC2 instances
-- Unattached EBS volumes
-- Snapshots (optional - can be filtered)
+- Unattached EBS volumes (IN-USE & Available)
+- Snapshots
 """
 # import the python dependencies
 import boto3
@@ -201,4 +201,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
