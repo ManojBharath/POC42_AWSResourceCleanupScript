@@ -2,7 +2,7 @@
 
 Simple Python and Terraform setup to identify and remove stopped EC2 instances, unattached EBS volumes, and snapshots.
 
-## Files
+## Files.
 
 ### Python Script
 - **cleanup_aws_resources.py**: Main cleanup script
@@ -108,3 +108,4 @@ stopped_instance_ids = ["i-0123456789abcdef0", "i-0123456789abcdef1"]
 **Permission Denied**: Ensure AWS credentials have EC2 and EBS permissions  
 **Resource In Use**: Can't delete volumes attached to instances - detach first  
 **Snapshot Dependencies**: Can't delete snapshots if AMIs depend on them
+
