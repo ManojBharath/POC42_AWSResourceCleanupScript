@@ -102,10 +102,3 @@ volume_ids = ["vol-0123456789abcdef0", "vol-0123456789abcdef1", "vol-0123456789a
 snapshot_ids = ["snap-0123456789abcdef0", "snap-0123456789abcdef1", "snap-0123456789abcdef2"]
 stopped_instance_ids = ["i-0123456789abcdef0", "i-0123456789abcdef1"]
 ```
-
-## Troubleshooting
-
-**Permission Denied**: Ensure AWS credentials have EC2 and EBS permissions  
-**Resource In Use**: Can't delete volumes attached to instances - detach first  
-**Snapshot Dependencies**: Can't delete snapshots if AMIs depend on them
-
