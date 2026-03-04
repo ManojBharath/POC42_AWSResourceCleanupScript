@@ -12,3 +12,4 @@ output "snapshot_ids" {
   description = "IDs of created snapshots"
   value       = aws_ebs_snapshot.snapshots[*].id
 }
+
