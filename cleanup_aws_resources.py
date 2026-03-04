@@ -6,7 +6,7 @@ Identifies and removes:
 - Unattached EBS volumes
 - Snapshots (optional - can be filtered)
 """
-
+# import the python dependencies
 import boto3
 import sys
 import os
@@ -14,6 +14,7 @@ from botocore.exceptions import ClientError
 
 # Get region from environment variable or use default
 aws_region = os.environ.get('AWS_REGION', 'ap-south-2')
+
 # Get AWS profile from environment or use 'authprofile'
 aws_profile = os.environ.get('AWS_PROFILE', 'authprofile')
 
@@ -24,6 +25,7 @@ session = boto3.Session(profile_name=aws_profile, region_name=aws_region)
 ec2 = session.client('ec2')
 ec2_resource = session.resource('ec2')
 
+# function to fetch all the stopped Instances(EC2)
 def get_stopped_instances():
     """Get all stopped EC2 instances"""
     try:
@@ -45,6 +47,7 @@ def get_stopped_instances():
         print(f"Error fetching stopped instances: {e}")
         return []
 
+# function to fetch all Volumes (In-USE, Available)
 def get_all_volumes():
     """Get all EBS volumes segregated by status"""
     try:
@@ -77,6 +80,7 @@ def get_all_volumes():
         traceback.print_exc()
         return [], []
 
+# function to fetch all snapshots
 def get_orphaned_snapshots():
     """Get all snapshots (user can filter manually)"""
     try:
@@ -95,6 +99,7 @@ def get_orphaned_snapshots():
         print(f"Error fetching snapshots: {e}")
         return []
 
+# function to deleted the stopped instances
 def delete_instances(instance_ids):
     """Delete stopped instances"""
     if not instance_ids:
@@ -109,6 +114,7 @@ def delete_instances(instance_ids):
         except ClientError as e:
             print(f"✗ Failed to terminate {instance_id}: {e}")
 
+# function to delete the volumes (IN-USE, Available) 
 def delete_volumes(volume_info_list):
     """Delete unattached volumes"""
     if not volume_info_list:
@@ -124,6 +130,7 @@ def delete_volumes(volume_info_list):
         except ClientError as e:
             print(f"✗ Failed to delete {volume_id}: {e}")
 
+# function to delete the snapshots
 def delete_snapshots(snapshot_ids):
     """Delete snapshots"""
     if not snapshot_ids:
@@ -194,3 +201,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
