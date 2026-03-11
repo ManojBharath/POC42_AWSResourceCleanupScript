@@ -1,4 +1,5 @@
 # Create 3 EC2 Instances
+
 resource "aws_instance" "instances" {
   count             = 3
   ami               = var.ami_id
@@ -38,3 +39,4 @@ resource "aws_ebs_snapshot" "snapshots" {
     Purpose     = "cleanup-testing"
   }
 }
+
